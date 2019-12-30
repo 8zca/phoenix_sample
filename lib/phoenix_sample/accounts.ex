@@ -102,8 +102,8 @@ defmodule PhoenixSample.Accounts do
     User.changeset(user, %{})
   end
 
-  def authenticate_user(username, plain_text_password) do
-    query = from u in User, where: u.username == ^username
+  def authenticate_user(email, plain_text_password) do
+    query = from u in User, where: u.email == ^email
     case Repo.one(query) do
       nil ->
         Argon2.no_user_verify()

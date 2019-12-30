@@ -19,8 +19,8 @@ defmodule PhoenixSampleWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
 
     post "/signup", UserController, :create
-    post "/login", SessionController, :create
-    post "/logout", SessionController, :delete
+    post "/signin", SessionController, :signin
+    post "/signout", SessionController, :signout
 
   end
 end
