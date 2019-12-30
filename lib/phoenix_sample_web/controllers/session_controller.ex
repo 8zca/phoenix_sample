@@ -5,8 +5,8 @@ defmodule PhoenixSampleWeb.SessionController do
   alias PhoenixSample.Accounts.User
   alias PhoenixSample.Auth.Guardian
 
-  def login(conn, %{"user" => %{"username" => username, "password" => password}}) do
-    case Accounts.authenticate_user(username, password) do
+  def signin(conn, %{"email" => email, "password" => password}) do
+    case Accounts.authenticate_user(email, password) do
       {:ok, %User{} = user} ->
         {:ok, jwt, _claims} = Guardian.encode_and_sign(user)
 
@@ -20,7 +20,7 @@ defmodule PhoenixSampleWeb.SessionController do
     end
   end
 
-  def logout(conn, _) do
+  def signout(conn, _) do
     conn
     |> Guardian.Plug.sign_out(Guardian, _opts = [])
     |> render("delete.jsonn")
