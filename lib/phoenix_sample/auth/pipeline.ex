@@ -1,8 +1,8 @@
 defmodule PhoenixSample.Auth.Pipeline do
   use Guardian.Plug.Pipeline,
     otp_app: :phoenix_sample,
-    error_handler: AuthMe.Auth.ErrorHandler,
-    module: AuthMe.Auth.Guardian
+    error_handler: PhoenixSample.Auth.ErrorHandler,
+    module: PhoenixSample.Auth.Guardian
 
   # If there is a session token, restrict it to an access token and validate it
   plug Guardian.Plug.VerifySession
